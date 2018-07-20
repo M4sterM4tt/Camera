@@ -14,6 +14,7 @@
 	<icon src="icon.jpg" width="180" height="180" />
 	<preference name="orientation" value="portrait" />  
    	<plugin name="cordova-plugin-whitelist" version="1" />
+	<plugin name="cordova-plugin-camera" version="2"/>
 
 </widget>
 
