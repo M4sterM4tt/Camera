@@ -1,0 +1,55 @@
+<!DOCTYPE html><!-- Defines the document as HTML --> 
+<html><!-- Creates Hyper Text Markup Language Element -->
+	<head><!-- Creates an head element -->
+	
+		<title>Camera</title>
+		<meta charset="utf-8"><!-- Sets Unicode Character Set -->
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Sets View-port scale -->
+		
+		<link href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css"/>
+		<script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
+		<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js" type="text/javascript"></script>
+		<script src="cordova.js" type="text/javascript"></script>
+		<script src="js/index.js" type="text/javascript"></script>
+
+	</head><!-- Closes the head element -->	
+	<body><!-- Creates an body element -->
+		
+		<!-- First Page -->
+		<div data-role="page" id="pageone">
+			
+			<div data-role="header">
+				<h2>Using the Camera: Page 1</h2>
+			</div>
+			
+			<div data-role="content">	
+			   
+				<input type="file" accept="image/*" capture>
+				<div id="imagePreview"></div>
+				<button onclick='window.location = "#pagetwo" ;'>Change Page</button>
+				
+			</div>
+
+		</div>
+		
+		
+		<!-- Second Page -->
+		<div data-role="page" id="pagetwo">
+		
+			<div data-role="header">
+				<h2>Using the Camera: Page 2</h2>
+			</div>
+			
+			<div data-role="content">	
+			   
+				<button id="phonegapcamera" onclick="capturePhoto();">Capture Photo</button> <br>
+				<img style="display:none;width:200px;height:200px;" id="image" src="" />
+				<button onclick='window.location = "#pageone" ;'>Change Page</button>
+				
+			</div>
+
+		</div>
+		
+		
+	</body><!-- Closes the body element -->	
+</html><!-- Closes the html element -->	

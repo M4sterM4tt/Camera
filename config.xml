@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "mob.app.dev.camera"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+    <name>Camera</name>
+
+    <description>This is the Mobile Code for the Camera Application</description>
+
+    <author email="WAIM1_16@uni.worc.ac.uk">Matthew Waite</author>
+	<platform name="android" />
+	<icon src="icon.jpg" width="180" height="180" />
+	<preference name="orientation" value="portrait" />  
+   	<plugin name="cordova-plugin-whitelist" version="1" />
+
+</widget>
+
