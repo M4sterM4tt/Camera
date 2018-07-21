@@ -14,12 +14,17 @@ var img;
 
 window.onload = function() {
 	
+	console.log("window.onload");
+	
+	
 	document.addEventListener("deviceready",setUp,false);
 	
 }
 
 
 function setUp() {
+	
+	console.log("setUp");
 	
 	
 	pictureSource = navigator.camera.PictureSourceType;
@@ -39,6 +44,9 @@ function setUp() {
 
 function displayAsImage(file) {
 	
+	console.log("displayAsImage(file)");
+	
+	
 	//create a HTML image
   	imgURL = URL.createObjectURL(file);
   	img = document.createElement('img');
@@ -55,22 +63,29 @@ function displayAsImage(file) {
   	img.width = 200;
   	img.height = 200;
   
-  	//insert the image intothe DOM so its displayed.
-  	$('#imagePreview').html(img);
+  	//insert the image into the DOM so its displayed.
+  	document.getElementById("imagePreview").innerHTML = img;
 
 }
 
 
 function capturePhoto() {
+
+	console.log("capturePhoto");
+	
+	
 	// navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
-	navigator.camera.getPicture( onSuccess , onFail, { quality: 100, destinationType: destinationType.DATA_URL });
+	navigator.camera.getPicture( onSuccess , onFail, { quality: 50, destinationType: destinationType.DATA_URL });
 
 }
 	
 
 // If the Camera succeeds.	
 function onSuccess(imageData) {
+
+	console.log("onSuccess(imageData)");
 	
+
 	var image = document.getElementById('image');
 	image.src = "data:image/jpeg;base64," + imageData;
 	
@@ -80,6 +95,9 @@ function onSuccess(imageData) {
 // If the Camera fails.
 function onFail(message) {
 	
-      alert('Failed because: ' + message);
+	console.log("onFail(message)");
+	
+	
+	alert('Failed because: ' + message);
 	  
 }
