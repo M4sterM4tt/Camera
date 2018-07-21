@@ -30,7 +30,8 @@
 				<input type="file" accept="image/*">
 				<div id="imagePreview"></div>
 				
-				<button onclick='window.location = "#pagetwo" ;'>Change Page</button>
+				<button onclick='window.location = "#pagetwo" ;'>Page 2</button>
+				<button onclick='window.location = "#pagethree" ;'>Page 3</button>
 				
 			</div>
 
@@ -49,7 +50,27 @@
 				<button id="phonegapcamera" onclick="capturePhoto();">Capture Photo</button> <br>
 				<img id="image" src="" />
 				
-				<button onclick='window.location = "#pageone" ;'>Change Page</button>
+				<button onclick='window.location = "#pageone" ;'>Page 1</button>
+				<button onclick='window.location = "#pagethree" ;'>Page 3</button>
+				
+			</div>
+
+		</div>
+		
+		
+		<!-- Third Page -->
+		<div data-role="page" id="pagethree">
+			
+			<div data-role="header">
+				<h2>Using the Camera: Page 3</h2>
+			</div>
+			
+			<div data-role="content">	
+			   
+				<div id="imageCollection"></div>
+				
+				<button onclick='window.location = "#pageone" ;'>Page 1</button>
+				<button onclick='window.location = "#pagetwo" ;'>Page 2</button>
 				
 			</div>
 

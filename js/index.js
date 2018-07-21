@@ -3,18 +3,39 @@
 
 // Variables
 
-var pictureSource; // sets the Picture Source.
-var destinationType; // sets the formaat of returned value.
+var object;
+var objectTwo;
+var countdownStorage;
+var found;
+var loop;
+
+
+var destinationType;
 var input;
 var file;
+
 
 var imgURL;
 var img;
 
 
+
+
 window.onload = function() {
 	
 	console.log("window.onload");
+	
+	// Setting Arrays.
+	object = [0];
+	objectTwo = [0];
+	countdownStorage = [0];
+
+	
+	for(draw = 0; draw < 999; draw+=1) {
+		object.push(0);
+		objectTwo.push(0);
+		countdownStorage.push(0);
+	}
 	
 	
 	setUpPhotos();
@@ -47,7 +68,9 @@ function displayAsImage(file) {
 
 	//when the image is loading get the URL location of the file.
   	img.onload = function() {
+		
     	URL.revokeObjectURL(imgURL);
+		
   	};
 
 	//set the img URL
@@ -59,7 +82,25 @@ function displayAsImage(file) {
   
   	//insert the image into the DOM so its displayed.
   	$('#imagePreview').html(img);
-
+	
+	found = false;
+		for	(loop = 1; loop < countdownStorage.length + 1; loop+=1) {
+		
+			if (loop != countdownStorage[loop] && found == false) {	
+				
+				countdownStorage[loop] = loop;
+				found = { "id":countdownStorage[loop], "url":$('#imagePreview').html(img) }
+				countdownJSON = JSON.stringify(found);
+				localStorage.setItem(loop, countdownJSON);
+				text = localStorage.getItem(loop);
+				object[loop] = JSON.parse(text);
+				console.log(object[loop])
+			}
+			
+		}
+	
+	Storing();
+	
 }
 
 
@@ -67,11 +108,8 @@ function setUp() {
 	
 	console.log("setUp");
 	
-	
-	pictureSource = navigator.camera.PictureSourceType;
 	destinationType = navigator.camera.DestinationType;
-	
-	
+		
 }
 
 
@@ -92,8 +130,27 @@ function onSuccess(imageData) {
 	console.log("onSuccess(imageData)");
 	
 
-	var image = document.getElementById('image');
+	image = document.getElementById('image');
 	image.src = "data:image/jpeg;base64," + imageData;
+	
+	found = false;
+	for	(loop = 1; loop < countdownStorage.length + 1; loop+=1) {
+		
+		if (loop != countdownStorage[loop] && found == false) {	
+				
+			countdownStorage[loop] = loop;
+			found = { "id":countdownStorage[loop], "url":image.src }
+			countdownJSON = JSON.stringify(found);
+			localStorage.setItem(loop, countdownJSON);
+			text = localStorage.getItem(loop);
+			object[loop] = JSON.parse(text);
+			console.log(object[loop])
+			
+		}
+			
+	}
+	
+	Storing();
 	
 }
 
@@ -106,4 +163,30 @@ function onFail(message) {
 	
 	alert('Failed because: ' + message);
 	  
+}
+
+
+
+
+function Storing() {
+	
+    start = setInterval(function() {
+	console.log("Storing");	
+		
+		
+		// Clears HTML Element.
+		document.getElementById("imageCollection").innerHTML = "";
+		
+		// Creates a loop.
+		for(loopThree = 1; loopThree < 1000; loopThree+=1) {
+			
+			text = localStorage.getItem(loopThree);
+			objectTwo[loopThree] = JSON.parse(text);	
+			
+			document.getElementById("imageCollection").innerHTML = document.getElementById("imageCollection").innerHTML + objectTwo[loopThree].url + "<BR>";
+
+		}	
+		
+	}, 1000);
+
 }
