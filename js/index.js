@@ -1,23 +1,47 @@
-$(document).on("pagecreate","#pageone", onPageCreated);
+// Camera Code
 
-//when page is loaded
-function onPageCreated() {
+
+// Variables
+
+var pictureSource; // sets the Picture Source.
+var destinationType; // sets the formaat of returned value.
+var input;
+var file;
+
+var imgURL;
+var img;
+
+
+window.onload = function() {
 	
-	//setup listern for change in image input element
-	var input = document.querySelector('input[type=file]');
-	input.onchange = function () {
-  		var file = input.files[0];
-		displayAsImage(file);  //call this fucntion with the file name if the image once taken.
-	};
+	document.addEventListener("deviceready",setUp,false);
+	
 }
 
+
+function setUp() {
+	
+	
+	pictureSource = navigator.camera.PictureSourceType;
+	destinationType = navigator.camera.DestinationType;
+	
+	
+	// setup listener for change in image input element
+	input = document.querySelector('input[type=file]');
+	input.onchange = function () {
+  		file = input.files[0];
+		displayAsImage(file); //call this function with the file name if the image was taken.
+	};
+	
+	
+}
 
 
 function displayAsImage(file) {
 	
 	//create a HTML image
-  	var imgURL = URL.createObjectURL(file);
-  	var img = document.createElement('img');
+  	imgURL = URL.createObjectURL(file);
+  	img = document.createElement('img');
 
 	//when the image is loading get the URL location of the file.
   	img.onload = function() {
@@ -33,30 +57,29 @@ function displayAsImage(file) {
   
   	//insert the image intothe DOM so its displayed.
   	$('#imagePreview').html(img);
+
 }
 
-
-
-
-var destinationType; //used sets what should be returned (image date OR file path to image for example)
-
-document.addEventListener("deviceready",onDeviceReady,false);
-
-function onDeviceReady() {
-	destinationType=navigator.camera.DestinationType;
-}
 
 function capturePhoto() {
-	navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-	destinationType: destinationType.DATA_URL });
+	// navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
+	navigator.camera.getPicture( onSuccess , onFail, { quality: 100, destinationType: destinationType.DATA_URL });
+
 }
 	
-function onPhotoDataSuccess(imageData) {
+
+// If the Camera succeeds.	
+function onSuccess(imageData) {
+	
 	var image = document.getElementById('image');
-	image.style.display = 'block';
 	image.src = "data:image/jpeg;base64," + imageData;
+	
 }
 
+
+// If the Camera fails.
 function onFail(message) {
+	
       alert('Failed because: ' + message);
+	  
 }
