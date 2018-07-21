@@ -17,27 +17,21 @@ window.onload = function() {
 	console.log("window.onload");
 	
 	
+	setUpPhotos();
 	document.addEventListener("deviceready",setUp,false);
 	
 }
 
 
-function setUp() {
-	
-	console.log("setUp");
-	
-	
-	pictureSource = navigator.camera.PictureSourceType;
-	destinationType = navigator.camera.DestinationType;
-	
-	
+function setUpPhotos() {
+
 	// setup listener for change in image input element
 	input = document.querySelector('input[type=file]');
 	input.onchange = function () {
+		console.log("setUpPhotos()");
   		file = input.files[0];
 		displayAsImage(file); //call this function with the file name if the image was taken.
 	};
-	
 	
 }
 
@@ -64,8 +58,20 @@ function displayAsImage(file) {
   	img.height = 200;
   
   	//insert the image into the DOM so its displayed.
-  	document.getElementById("imagePreview").innerHTML = img;
+  	$('#imagePreview').html(img);
 
+}
+
+
+function setUp() {
+	
+	console.log("setUp");
+	
+	
+	pictureSource = navigator.camera.PictureSourceType;
+	destinationType = navigator.camera.DestinationType;
+	
+	
 }
 
 
