@@ -19,6 +19,7 @@ var file;
 
 var imgURL;
 var img;
+var imgTwo;
 
 
 
@@ -134,9 +135,15 @@ function Storing() {
 		// Creates a loop.
 		for(loopThree = 1; loopThree < 1000; loopThree+=1) {
 			
-			image = localStorage.getItem(loopThree);
-			object[loopThree] = JSON.parse(image);
-			document.getElementById("imageCollection").innerHTML = object[loopThree].url;
+			test = localStorage.getItem(loopThree);
+			object[loopThree] = JSON.parse(test);
+			if (object[loopThree] != 0 && object[loopThree] != null) {
+				imgTwo = document.createElement('img');
+				imgTwo.src = object[loopThree].url;
+				imgTwo.width = 200;
+				imgTwo.height = 200;
+				$('#imageCollection').html(imgTwo);
+			}
 			
 		}	
 		
