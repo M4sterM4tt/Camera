@@ -91,8 +91,8 @@ function displayAsImage(file) {
 		console.log("------------------------------");		
     	URL.revokeObjectURL(imgURL);		
   	};
-	
-	
+
+
 	// Storing Data.
 	found = false;
 	for	(loop = 1; loop < countdownStorage.length + 1; loop+=1) {
@@ -138,11 +138,22 @@ function Storing() {
 			test = localStorage.getItem(loopThree);
 			object[loopThree] = JSON.parse(test);
 			if (object[loopThree] != 0 && object[loopThree] != null) {
+					
+				
+				// Create a HTML image.
 				imgTwo = document.createElement('img');
+
+				
+				// Set the img URL and fix the size of the image
 				imgTwo.src = object[loopThree].url;
 				imgTwo.width = 200;
 				imgTwo.height = 200;
+			  
+			  
+				// Insert the image into the DOM so its displayed.
 				$('#imageCollection').html(imgTwo);
+				
+				
 			}
 			
 		}	
